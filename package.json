@@ -1,0 +1,22 @@
+
+{
+  "name": "meetup-tool",
+  "preferGlobal": true,
+  "version": "0.1.0",
+  "author": "Jason Bauman <admin@jaypoc.com>",
+  "description": "Quick and dirty NodeJS app to dump users based on aging/paid status",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaypoc/meetup-tool.git"
+  },
+  "keywords": [
+    "meetup"
+  ],
+  "dependencies" : {
+    "sugar"   :  "1.4.1",
+    "meetup" :  "0.1.0-SNAPSHOT"    
+  },
+  "engines": {
+    "node": ">=0.6"
+  }
+}
