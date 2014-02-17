@@ -1,6 +1,13 @@
 # Meetup.com Management Tool
 
-This was created as a quick and dirty management tool for Meetup.com
+**You probably don't need this script! Meetup.com has built in membership functions. This was created since I wanted to manage the memberships manually.**
+
+This script dumps a list of Meetup.com group users and groups them into the following classifications: 
+* `current` paid
+* `trial` unpaid, less than *n+1* days
+* `expired` unpaid, more than *n* days
+
+Note: This version has a user, "Mike R" hard-coded to flad as "current". This should be removed if anybody else uses this script.
 
 ## Setup
 Download dependencies via NPM:
