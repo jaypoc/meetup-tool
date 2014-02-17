@@ -6,37 +6,39 @@ class MeetupGroup
     this.group_id = args.group_id || null
     this.key = args.key || null
     this.expire_after = args.expire_after || null
-
     this.conn = new Meetup
     this.members = []
 
   get_profiles: (callback) ->
     this.members = []
-    params =
-      key: this.key
-      group_id: this.group_id
-      fields: "membership_dues"
+    console.log this.key
+    params = { key: this.key, group_id: this.group_id, fields: "membership_dues" }
     this.conn.get "/2/profiles", params, (err, data) =>
-      parsed = JSON.parse data        
+      console.log err
+      parsed = JSON.parse data
       parsed.results.each (profile) =>
         this.members.push this.updated_profile(profile)
       callback()
   
   updated_profile: (profile) ->
     today = (new Date).getTime()
-    name    = profile.name 
-    joined  = profile.created 
+    name    = profile.name
+    joined  = profile.created
     status  = profile.membership_dues.period_status
     days    = ((today-joined) / 86400000).round(0)
-    profile.status = "expired" if days > this.expire_after-1 and status == "unpaid" and name != "Mike R"
-    profile.status = "current" if status == "paid" or name == "Mike R"
-    profile.status = "trial" if days < this.expire_after and status == "unpaid"               
+    if days > this.expire_after-1 and status == "unpaid" and name != "Mike R"
+      profile.status = "expired"
+    if status == "paid" or name == "Mike R"
+      profile.status = "current"
+    if days < this.expire_after and status == "unpaid"
+      profile.status = "trial"
     profile.joined = (new Date(joined)).format("{MM}/{dd}/{yyyy}")
     profile.days = days
     profile
 
   show_member: (member, conditional=null) ->
-      console.log "  #{member.name} (Joined #{member.days} days ago on #{member.joined})" if member.status == conditional
+    if member.status == conditional
+      console.log "  #{member.name} (Joined #{member.days} days ago on #{member.joined})"
 
   show: () ->
     this.get_profiles () =>

@@ -1,7 +1,8 @@
 MeetupGroup = require './meetup_group'
+config = require './api.key'
 
 lippw = new MeetupGroup
-  key: "274063285164125c19595532532d772b"
+  key: config.key
   group_id: 3363152
   expire_after: 45
 
