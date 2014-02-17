@@ -7,7 +7,7 @@ This script dumps a list of Meetup.com group users and groups them into the foll
 * `trial` unpaid, less than *n+1* days
 * `expired` unpaid, more than *n* days
 
-Note: This version has a user, "Mike R" hard-coded to flad as "current". This should be removed if anybody else uses this script.
+Note: This version has a user, "Mike R" hard-coded to flag as "current". This should be removed if anybody else uses this script.
 
 ## Setup
 Download dependencies via NPM:
