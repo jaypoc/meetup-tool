@@ -11,10 +11,8 @@ class MeetupGroup
 
   get_profiles: (callback) ->
     this.members = []
-    console.log this.key
     params = { key: this.key, group_id: this.group_id, fields: "membership_dues" }
     this.conn.get "/2/profiles", params, (err, data) =>
-      console.log err
       parsed = JSON.parse data
       parsed.results.each (profile) =>
         this.members.push this.updated_profile(profile)
