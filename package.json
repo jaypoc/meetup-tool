@@ -12,11 +12,17 @@
   "keywords": [
     "meetup"
   ],
-  "dependencies" : {
-    "sugar"   :  "1.4.1",
-    "meetup" :  "0.1.0-SNAPSHOT"    
+  "dependencies": {
+    "sugar": "1.4.1",
+    "meetup": "0.1.0-SNAPSHOT",
+    "snyk": "^1.316.1"
   },
   "engines": {
     "node": ">=0.6"
-  }
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
